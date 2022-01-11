@@ -1,7 +1,7 @@
 import argparse #สำหรับ รับ input
 import subprocess #สำหรับ iyo terminal command
 
-import flask  #สำหรับ ทำ web app และ web service
+#import flask  #สำหรับ ทำ web app และ web service
 
 def print_orther():
     print('something else')
@@ -21,11 +21,14 @@ if __name__ == "__main__":  #main function
     parser.add_argument(
         '--yval', #--yval ตัวใหญ่ เล็ก ไม่มีผล
         type = int,
-        default = 3,
+        default = 3, #ถ้าไม่มี default ต้องใส่ input , เป็น input ที่ไม่จำเป็นเพราะมีค่า default อยู่แล้ว
         help = 'value of y')
+
     args = parser.parse_args()
+
     x = args.x
     y = args.yval
+    
     print(f'M = {args.M}')
     print(f'calculate{x} x {y} = {x*y}')
 
