@@ -28,12 +28,12 @@ def parse_input():
     return args
 
 if __name__ == "__main__": #main function
-    args = parse_input()
     
+    args = parse_input()
+
     x = args.x
     y = args.yval
     print(f'M = {args.M}')
     print(f'calculate {x} x {y} = {x*y}')
-
 
     #$python python_script_101.py 9 --x 11
