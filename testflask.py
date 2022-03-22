@@ -33,9 +33,10 @@ def home():
     dbtb = pd.read_csv('db.csv')
     first_name = request.form.get("fname")
     last_name = request.form.get("lname")
+    language_name = request.form.get("fav_language")
     dbtb = dbtb.append({'name':first_name,'lastname':last_name}, ignore_index=True)
     dbtb.to_csv('db.csv', index=False)
-    return render_template("home.html", name = f"{first_name}{last_name}")
+    return render_template("home.html", name = f"{first_name} {last_name}", language = f"{language_name}")
   # #new
   # if request.method =='POST':
   #   HTML_name = request.form.get("fav_language")
