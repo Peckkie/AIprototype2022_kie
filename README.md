@@ -1,1 +1,2 @@
-# AIprototype2022_kie
+# AIprototype 2022 class 
+> Yupaporn Wanna 645020061-2
