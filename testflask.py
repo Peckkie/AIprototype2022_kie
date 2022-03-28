@@ -1,4 +1,4 @@
-from flask import Flask, render_template , request
+from flask import Flask, render_template , request, make_response
 import requests 
 import json
 import pandas as pd
@@ -33,10 +33,27 @@ def home():
     dbtb = pd.read_csv('db.csv')
     first_name = request.form.get("fname")
     last_name = request.form.get("lname")
+
     language_name = request.form.get("fav_language")
     dbtb = dbtb.append({'name':first_name,'lastname':last_name}, ignore_index=True)
     dbtb.to_csv('db.csv', index=False)
-    return render_template("home.html", name = f"{first_name} {last_name}", language = f"{language_name}")
+    # Cookies
+    resp = make_response(render_template("home.html", name = f"{first_name} {last_name}", language = f"{language_name}"))
+    resp.set_cookie('firstname', first_name)
+    resp.set_cookie('lastname', last_name)
+    Name = first_name + last_name
+    resp.set_cookie('Name_', Name)
+
+    return resp
+    # return render_template("home.html", name = f"{first_name} {last_name}", language = f"{language_name}")
+  
+  if request.method =='GET': # get from url
+    getval = request.args
+    print(getval)
+    print(getval.get('name'))
+  
+  
+  
   # #new
   # if request.method =='POST':
   #   HTML_name = request.form.get("fav_language")
@@ -53,6 +70,8 @@ def home2():
 
     return render_template("home.html", language = f"{language_name}")
   return render_template("home.html", language = 'Language')
+
+
 
 if __name__ == "__main__":
   app.run() #host = '0.0.0.0'
